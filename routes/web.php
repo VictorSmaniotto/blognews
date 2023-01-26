@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SiteController::class, 'home']);
+
+Route::get('/buscar', [SiteController::class, 'buscar']);
+
+Route::get('/noticias', [NoticiaController::class, 'index']);
+
+Route::get('/noticias/visualizar', [NoticiaController::class, 'visualizar']);
+
+Route::get('/noticias/categorias', [NoticiaController::class, 'categoria']);
+
+Route::get('/login', [LoginController::class, 'login']);
