@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Faker\Factory as Faker;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -19,7 +21,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'nome' => 'Victor Smaniotto',
-            'email' => 'victorsmaniotto@hotmail.com',
+            'email' => 'victor@teste.com',
             'password' => bcrypt('12345678'),
             'role' => 'admin',
             'created_at' => now(),
@@ -28,7 +30,7 @@ class UserSeeder extends Seeder
         foreach (range(1, 20) as $index) {
             User::create([
                 'nome' => $faker->name,
-                'email' => $faker->unique()->safeEmail(),
+                'email' => $faker->unique()->safeEmail,
                 'password' => bcrypt('12345678'),
                 'role' => 'editor',
                 'created_at' => now(),

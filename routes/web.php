@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\UsuariosController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\NoticiaController;
-use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +19,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [SiteController::class, 'home']);
-
 Route::get('/buscar', [SiteController::class, 'buscar']);
 
 Route::get('/noticias', [NoticiaController::class, 'index']);
-
 Route::get('/noticias/visualizar', [NoticiaController::class, 'visualizar']);
-
-Route::get('/noticias/categorias', [NoticiaController::class, 'categoria']);
+Route::get('/noticias/categoria', [SiteController::class, 'categoria']);
 
 Route::get('/login', [LoginController::class, 'login']);
+
+
+
+
+
+Route::prefix('/admin')->group(function () {
+
+    Route::get('/', [AdminController::class, 'home'])
+        ->name('admin.home');
+
+    Route::get('/usuarios', [UsuariosController::class, 'index'])
+        ->name('admin.usuarios.index');
+
+    Route::get('/usuarios/cadastrar', [UsuariosController::class, 'create'])
+        ->name('admin.usuarios.cadastrar');
+
+    Route::post('/usuarios/cadastrar', [UsuariosController::class, 'store'])
+        ->name('admin.usuarios.cadastrar');
+
+    Route::get('/editar/{id}', [UsuariosController::class, 'edit'])
+        ->name('admin.usuarios.editar');
+
+    Route::delete('/deletar/{id}', [UsuariosController::class, 'destroy'])
+        ->name('admin.usuarios.deletar');
+});
