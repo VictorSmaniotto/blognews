@@ -48,6 +48,9 @@ Route::prefix('/admin')->group(function () {
     Route::get('/editar/{id}', [UsuariosController::class, 'edit'])
         ->name('admin.usuarios.editar');
 
+    Route::put('/editar/{id}', [UsuariosController::class, 'update'])
+        ->name('admin.usuarios.editar');
+
     Route::delete('/deletar/{id}', [UsuariosController::class, 'destroy'])
         ->name('admin.usuarios.deletar');
 });

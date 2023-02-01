@@ -37,11 +37,16 @@
                             <th scope="row">{{ $user->id }}</th>
                             <td>{{ $user->nome }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>
+                            <td class="d-flex">
                                 <a
-href="{{ route('admin.usuarios.editar',['id'=> $user->id ]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+href="{{ route('admin.usuarios.editar',['id'=> $user->id ]) }}" class="btn btn-primary btn-sm me-1"><i class="fas fa-edit"></i></a>
 
-<a href="{{ route('admin.usuarios.deletar',['id'=> $user->id ]) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+<form action="{{ route('admin.usuarios.deletar',['id'=> $user->id ]) }}" method="post">
+    @csrf
+    @method('delete')
+    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente deletar este usuário?')"><i class="fas fa-trash"></i></button>
+</form>
+
                             </td>
                         </tr>
 
