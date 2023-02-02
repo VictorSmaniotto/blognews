@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             'created_at' => now(),
         ]);
 
-        foreach (range(1, 20) as $index) {
+        foreach (range(1, 200) as $index) {
             User::create([
                 'nome' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
